@@ -1,4 +1,4 @@
-# CB321qc
+# BBS230B
 ## Learning objectives
 
 * Describe sequencing by synthesis, including cDNA library preparation.
