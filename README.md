@@ -1,27 +1,49 @@
 # BBS230B
-## Learning objectives
 
-* Describe sequencing by synthesis, including cDNA library preparation.
-* Describe the design considerations to perform an RNA sequencing experiment.
-* Describe the workflow for a standard bulk or single-cell RNA-seq data analysis.
-* List computational skills necessary to implement the various steps in the analysis workflow.
-* List genomics-specific databases for data sharing and download
+## Bulk RNA-seq, June 14, 2023
 
-## Lesson Plan
+### Learning objectives
 
-1. [Introduction](slides/Intro_to_rnaseq_lecture_cb321.pdf)
-1. [RNA-seq library prep and sequencing basics](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon-flipped/lessons/01_intro-to-RNAseq.html)
-1. Bulk RNA-seq
-    1. [Experimental design](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/experimental_planning_considerations.html)
-    1. [Analysis](https://hbctraining.github.io/rnaseq-cb321/lessons/analysis_methods.html)
-    1. [Visualization of DE results](https://hbctraining.github.io/Training-modules/planning_successful_rnaseq/lessons/data_visualization.html)
-    1. [Functional analysis](slides/functional_analysis.pdf)
-1. [Single Cell RNA-seq](slides/Intro-to-scRNAseq-analysis.pdf)
-1. [Types of genomics data](slides/file_formats.pdf)
-2. [Data access and sharing](lessons/access-deposit.md)
-3. Data storage
+* Explain common considerations when designing a bulk RNA-seq experiment
+* List the steps involved in the analysis of a bulk RNA-seq dataset
+* Discuss common challenges and how to overcome them
 
-### Resources
+### Lessons
+1. [Experimental design](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/experimental_planning_considerations.html)
+1. [Analysis](https://hbctraining.github.io/rnaseq-cb321/lessons/analysis_methods.html)
+1. [Visualization of DE results](https://hbctraining.github.io/Training-modules/planning_successful_rnaseq/lessons/data_visualization.html)
+1. [Functional analysis]()
 
+## Single cell RNA-seq, June 15, 2023
+
+### Learning objectives
+
+* Explain common considerations when designing a single-cell RNA-seq experiment
+* List the steps involved in the analysis of a single cell dataset
+* List the key statistical concepts utilized for the analysis
+
+### Lessons
+1. 
+
+## Resources (bulk RNA-seq)
+
+* [bulk RNA-seq "Part I" (FASTQ to count matrix) workshop](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon-flipped/)
+* [Differential Gene Expression analysis workshop](https://hbctraining.github.io/DGE_workshop_salmon_online/)
 * [Planning a successfull bulk RNA-seq experiment](https://hbctraining.github.io/Training-modules/planning_successful_rnaseq/#contents)
+* [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#theory-behind-deseq2)
+* [Functional analysis visualization](https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html)
+* [Ggplot2 for functional analysis](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/ggplot2.html)
+
+## Resources (Single cell RNA-seq)
+
+* [Single-cell RNA-seq workshop](https://hbctraining.github.io/scRNA-seq/)
 * ["How many cells are needed per sample for my single-cell experiment?"](https://satijalab.org/howmanycells/)
+* [http://bioconductor.org/books/release/OSCA/](http://bioconductor.org/books/release/OSCA/)
+* [https://liulab-dfci.github.io/bioinfo-combio/](https://liulab-dfci.github.io/bioinfo-combio/)
+* [https://hemberg-lab.github.io/scRNA.seq.course/](https://hemberg-lab.github.io/scRNA.seq.course/)
+* [https://github.com/SingleCellTranscriptomics](https://github.com/SingleCellTranscriptomics)
+* [Seurat vignettes](https://satijalab.org/seurat/vignettes.html)
+
+## Resources (general)
+* [RMarkdown](https://hbctraining.github.io/Training-modules/Rmarkdown/)
+* ["Principal Component Analysis (PCA) clearly explained"](https://www.youtube.com/watch?v=_UVHneBUBW0), a video from [Josh Starmer](https://twitter.com/joshuastarmer)
