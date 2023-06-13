@@ -83,22 +83,11 @@ clusterProfiler has a variety of options for viewing the over-represented GO ter
 
 The **dotplot** shows the number of genes associated with the first 50 terms (size) and the p-adjusted values for these terms (color). This plot displays the top 50 GO terms by gene ratio (# genes related to GO term / total number of sig genes), not p-adjusted value.
 
-```r
-## Dotplot 
-dotplot(ego, showCategory=50)
-```
-  
-The next plot is the **enrichment GO plot**, which shows the relationship between the top 50 most significantly enriched GO terms (padj.), by grouping similar terms together. Before creating the plot, we will need to obtain the similarity between terms using the `pairwise_termsim()` function ([instructions for emapplot](https://rdrr.io/github/GuangchuangYu/enrichplot/man/emapplot.html)). In the enrichment plot, the color represents the p-values relative to the other displayed terms (brighter red is more significant), and the size of the terms represents the number of genes that are significant from our list.
-
-## Enrichmap clusters the 50 most significant (by padj) GO terms to visualize relationships between terms
-emapplot(ego, showCategory = 50)
-```
-
 <p align="center"> 
-<img src="../img/emapplot_salmon.png" width="800">
+<img src="../img/mov10oe_dotplot.png" width="800">
 </p> 
-  
-Finally, the **category netplot** shows the relationships between the genes associated with the top five most significant GO terms and the fold changes of the significant genes associated with these terms (color). The size of the GO terms reflects the pvalues of the terms, with the more significant terms being larger. This plot is particularly useful for hypothesis generation in identifying genes that may be important to several of the most affected processes. 
+
+The next plot is the **category netplot** shows the relationships between the genes associated with the top five most significant GO terms and the fold changes of the significant genes associated with these terms (color). The size of the GO terms reflects the pvalues of the terms, with the more significant terms being larger. This plot is particularly useful for hypothesis generation in identifying genes that may be important to several of the most affected processes. 
 
 <p align="center"> 
 <img src="../img/cnetplot1_salmon.png" width="800">
