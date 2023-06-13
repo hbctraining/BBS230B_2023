@@ -78,103 +78,6 @@ Some genes with less information may only be associated with general 'parent' te
 
 [Tips for working with GO terms](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003343)
 
-## clusterProfiler
-
-We will be using [clusterProfiler](http://bioconductor.org/packages/release/bioc/html/clusterProfiler.html) to perform over-representation analysis on GO terms associated with our list of significant genes. The tool takes as input a significant gene list and a background gene list and performs statistical enrichment analysis using hypergeometric testing. The basic arguments allow the user to select the appropriate organism and GO ontology (BP, CC, MF) to test. 
-
-### Running clusterProfiler
-
-To run clusterProfiler GO over-representation analysis, we will change our gene names into Ensembl IDs, since the tool works a bit easier with the Ensembl IDs. 
-
-Then load the following libraries:
-
-```r
-# Load libraries
-library(DOSE)
-library(pathview)
-library(clusterProfiler)
-library(org.Hs.eg.db)
-```
-
-For the different steps in the functional analysis, we require Ensembl and Entrez IDs. We will use the gene annotations that we generated previously to merge with our differential expression results.
-
-```r
-## Merge the AnnotationHub dataframe with the results 
-res_ids <- left_join(res_tableOE_tb, annotations_ahb, by=c("gene"="gene_id"))    
-```
-
-> _**NOTE:** If you were unable to generate the `annotations_ahb` object, you can download the annotations to your `data` folder by right-clicking [here](https://github.com/hbctraining/DGE_workshop_salmon_online/raw/master/data/annotations_ahb.csv) and selecting "Save link as..."_
->
-> _To read in the object, you can run the following code:_
-> `annotations_ahb <- read.csv("annotations_ahb.csv")`
-
-To perform the over-representation analysis, we need a list of background genes and a list of significant genes. For our background dataset we will use all genes tested for differential expression (all genes in our results table). For our significant gene list we will use genes with p-adjusted values less than 0.05 (we could include a fold change threshold too if we have many DE genes).
-
-```r
-## Create background dataset for hypergeometric testing using all genes tested for significance in the results                 
-allOE_genes <- as.character(res_ids$gene)
-
-## Extract significant results
-sigOE <- dplyr::filter(res_ids, padj < 0.05)
-
-sigOE_genes <- as.character(sigOE$gene)
-```
-
-Now we can perform the GO enrichment analysis and save the results:
-
-```r
-## Run GO enrichment analysis 
-ego <- enrichGO(gene = sigOE_genes, 
-                universe = allOE_genes,
-                keyType = "ENSEMBL",
-                OrgDb = org.Hs.eg.db, 
-                ont = "BP", 
-                pAdjustMethod = "BH", 
-                qvalueCutoff = 0.05, 
-                readable = TRUE)
-```
-
->**NOTE:** The different organisms with annotation databases available to use with for the `OrgDb` argument can be found [here](../img/orgdb_annotation_databases.png).
->
-> Also, the `keyType` argument may be coded as `keytype` in different versions of clusterProfiler.
->
-> Finally, the `ont` argument can accept either "BP" (Biological Process), "MF" (Molecular Function), and "CC" (Cellular Component) subontologies, or "ALL" for all three.
-
-```r
-## Output results from GO analysis to a table
-cluster_summary <- data.frame(ego)
-
-write.csv(cluster_summary, "results/clusterProfiler_Mov10oe.csv")
-```
-
-<p align="center">  
-<img src="../img/cluster_summary.png" width="700">
-</p>             
-
-> **NOTE:** Instead of saving just the results summary from the `ego` object, it might also be beneficial to save the object itself. The `save()` function enables you to save it as a `.rda` file, e.g. `save(ego, file="results/ego.rda")`. 
-> The complementary function to `save()` is the function `load()`, e.g. `ego <- load(file="results/ego.rda")`.
->
-> *This is a useful set of functions to know, since it enables one to preserve analyses at specific stages and reload them when needed.* More information about these functions can be found [here](https://www.r-bloggers.com/load-save-and-rda-files/) & [here](http://rpubs.com/euclid/387778).
-
-***
-
-> **NOTE:** **You can also perform GO enrichment analysis with only the up or down regulated genes** in addition to performing it for the full list of significant genes. This can be useful to identify GO terms impacted in one direction and not the other. If very few genes are in any of these lists (< 50, roughly) it may not be possible to get any significant GO terms.
-> ```
-> ## Extract upregulated genes
-> sigOE_up <- dplyr::filter(res_ids, padj < 0.05 & log2foldchange > 0)
-> 
-> sigOE_up_genes <- as.character(sigOE_up$gene)
-> 
-> ## Extract downregulated genes
-> sigOE_down <- dplyr::filter(res_ids, padj < 0.05 & log2foldchange < 0)
->  
-> sigOE_down_genes <- as.character(sigOE_down$gene)
-> ```
-> 
-> You can then create `ego_up` & `ego_down` objects by running the `enrichGO()` function for `gene = sigOE_up_genes` or `gene = sigOE_down_genes`.
-
-***
-
 ### Visualizing clusterProfiler results
 clusterProfiler has a variety of options for viewing the over-represented GO terms. We will explore the dotplot, enrichment plot, and the category netplot.
 
@@ -184,26 +87,12 @@ The **dotplot** shows the number of genes associated with the first 50 terms (si
 ## Dotplot 
 dotplot(ego, showCategory=50)
 ```
-
-**To save the figure,** click on the `Export` button in the RStudio `Plots` tab and `Save as PDF...`. In the pop-up window, change:
-- `Orientation:` to `Landscape`
-- `PDF size` to `8 x 14` to give a figure of appropriate size for the text labels
-
-<p align="center"> 
-<img src="../img/mov10oe_dotplot.png" width="800">
-</p> 
   
 The next plot is the **enrichment GO plot**, which shows the relationship between the top 50 most significantly enriched GO terms (padj.), by grouping similar terms together. Before creating the plot, we will need to obtain the similarity between terms using the `pairwise_termsim()` function ([instructions for emapplot](https://rdrr.io/github/GuangchuangYu/enrichplot/man/emapplot.html)). In the enrichment plot, the color represents the p-values relative to the other displayed terms (brighter red is more significant), and the size of the terms represents the number of genes that are significant from our list.
-
-```r
-## Add similarity matrix to the termsim slot of enrichment result
-ego <- enrichplot::pairwise_termsim(ego)
 
 ## Enrichmap clusters the 50 most significant (by padj) GO terms to visualize relationships between terms
 emapplot(ego, showCategory = 50)
 ```
-
-**To save the figure,** click on the `Export` button in the RStudio `Plots` tab and `Save as PDF...`. In the pop-up window, change the `PDF size` to `12 x 14` to give a figure of appropriate size for the text labels.
 
 <p align="center"> 
 <img src="../img/emapplot_salmon.png" width="800">
@@ -211,56 +100,8 @@ emapplot(ego, showCategory = 50)
   
 Finally, the **category netplot** shows the relationships between the genes associated with the top five most significant GO terms and the fold changes of the significant genes associated with these terms (color). The size of the GO terms reflects the pvalues of the terms, with the more significant terms being larger. This plot is particularly useful for hypothesis generation in identifying genes that may be important to several of the most affected processes. 
 
-> **Note** - You may need to install the `ggnewscale` package using `install.packages("ggnewscale")` for the `cnetplot()` function to work.
-
-```r
-## To color genes by log2 fold changes, we need to extract the log2 fold changes from our results table creating a named vector
-OE_foldchanges <- sigOE$log2FoldChange
-
-names(OE_foldchanges) <- sigOE$gene
-
-## Cnetplot details the genes associated with one or more terms - by default gives the top 5 significant terms (by padj)
-cnetplot(ego, 
-         categorySize="pvalue", 
-         showCategory = 5, 
-         foldChange=OE_foldchanges, 
-         vertex.label.font=6)
-         
-## If some of the high fold changes are getting drowned out due to a large range, you could set a maximum fold change value
-OE_foldchanges <- ifelse(OE_foldchanges > 2, 2, OE_foldchanges)
-OE_foldchanges <- ifelse(OE_foldchanges < -2, -2, OE_foldchanges)
-
-cnetplot(ego, 
-         categorySize="pvalue", 
-         showCategory = 5, 
-         foldChange=OE_foldchanges, 
-         vertex.label.font=6)
-```
-
-**Again, to save the figure,** click on the `Export` button in the RStudio `Plots` tab and `Save as PDF...`. Change the `PDF size` to `12 x 14` to give a figure of appropriate size for the text labels.
-
 <p align="center"> 
 <img src="../img/cnetplot1_salmon.png" width="800">
-</p> 
-  
-If you are interested in significant processes that are **not** among the top five, you can subset your `ego` dataset to only display these processes:
-
-```r
-## Subsetting the ego results without overwriting original `ego` variable
-ego2 <- ego
-
-ego2@result <- ego@result[c(1,3,4,8,9),]
-
-## Plotting terms of interest
-cnetplot(ego2, 
-         categorySize="pvalue", 
-         foldChange=OE_foldchanges, 
-         showCategory = 5, 
-         vertex.label.font=6)
-```
-
-<p align="center"> 
-<img src="../img/cnetplot-2_salmon.png" width="800">
 </p> 
   
 ***
