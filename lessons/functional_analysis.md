@@ -108,7 +108,7 @@ Gene sets are pre-defined groups of genes, which are functionally related. Commo
 The details regarding GSEA can be found in the [PNAS paper](https://www.pnas.org/content/102/43/15545) by Subramanian et al. We will describe briefly the steps outlined in the paper below:
 
 <p align="center"> 
-<img src="../img/gsea_overview.png" width="600">
+<img src="../img/gsea_overview.jpg" width="600">
 </p>
 
 _**Image credit:** [Subramanian et al. Proceedings of the National Academy of Sciences Oct 2005, 102 (43) 15545-15550; DOI: 10.1073/pnas.0506580102](https://www.pnas.org/content/102/43/15545)_
