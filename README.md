@@ -10,9 +10,10 @@
 
 ### Lessons
 1. [Experimental design](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/experimental_planning_considerations.html)
-1. [Analysis](https://hbctraining.github.io/rnaseq-cb321/lessons/analysis_methods.html)
-1. [Visualization of DE results](https://hbctraining.github.io/Training-modules/planning_successful_rnaseq/lessons/data_visualization.html)
-1. [Functional analysis]()
+1. [Raw data to counts workflow)](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/01a_RNAseq_processing_workflow.html)
+2. [Differential gene expression analysis]()
+4. [Visualization of DE results](https://hbctraining.github.io/Training-modules/planning_successful_rnaseq/lessons/data_visualization.html)
+5. [Functional analysis]()
 
 ## Single cell RNA-seq, June 15, 2023
 
