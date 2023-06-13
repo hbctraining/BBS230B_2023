@@ -1,5 +1,3 @@
-# BBS230B
-
 ## Bulk RNA-seq, June 14, 2023
 
 ### Learning objectives
