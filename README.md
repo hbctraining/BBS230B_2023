@@ -12,8 +12,9 @@
 1. [Experimental design](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/experimental_planning_considerations.html)
 1. [Raw data to counts workflow](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/01a_RNAseq_processing_workflow.html)
 2. [Differential gene expression analysis](https://hbctraining.github.io/rnaseq-cb321/lessons/dge_analysis.html)
-4. [Visualization of DE results](https://hbctraining.github.io/Training-modules/planning_successful_rnaseq/lessons/data_visualization.html)
 5. [Functional analysis](lessons/functional_analysis.md)
+6. 4. [Visualization of DE results](https://hbctraining.github.io/Training-modules/planning_successful_rnaseq/lessons/data_visualization.html)
+
 
 * [Understanding PCA](https://hbctraining.github.io/scRNA-seq_online/lessons/05_theory_of_PCA.html)
 
