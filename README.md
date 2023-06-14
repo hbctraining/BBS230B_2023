@@ -27,7 +27,7 @@
 * List the key statistical concepts utilized for the analysis
 
 ### Lessons
-1. [Single cell RNA-seq]()
+1. [Single cell RNA-seq](../slides/Intro-to-scRNAseq.pdf)
 
 ## Resources (bulk RNA-seq)
 
