@@ -15,6 +15,8 @@
 4. [Visualization of DE results](https://hbctraining.github.io/Training-modules/planning_successful_rnaseq/lessons/data_visualization.html)
 5. [Functional analysis](lessons/functional_analysis.md)
 
+* [Understanding PCA](https://hbctraining.github.io/scRNA-seq_online/lessons/05_theory_of_PCA.html)
+
 ## Single cell RNA-seq, June 15, 2023
 
 ### Learning objectives
