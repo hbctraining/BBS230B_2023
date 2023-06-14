@@ -75,7 +75,7 @@ Some features of GO categories:
 
 ### Visualizing over-representation results
 
-We often use the tool [clusterProfiler]() for performing over-representation analysis with GO. In addition to performing the hypergeometric testing, clusterPorfiler is able to create good visualizations of the results, two examples are shown below.
+We often use the R package [clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/index.html) for performing over-representation analysis with GO (and other functional analyses). In addition to performing the hypergeometric testing, clusterPorfiler is able to create good visualizations of the results; two examples are shown below.
 
 (1) The **dotplot** shows the number of genes associated with a certain number of GO terms (on the Y-axis), the p-adjusted values for these terms (color) and the gene ratio (# genes related to GO term / total number of sig genes, on the X-axis).
 
