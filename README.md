@@ -1,6 +1,6 @@
-# BBS-230B (2023)
+# BBS-230B (2024)
 
-## Bulk RNA-seq, June 14, 2023
+## Bulk RNA-seq, May 6th, 2024
 
 ### Learning objectives
 
@@ -18,7 +18,7 @@
 
 * [Understanding PCA](https://hbctraining.github.io/scRNA-seq_online/lessons/05_theory_of_PCA.html)
 
-## Single cell RNA-seq, June 15, 2023
+## Single cell RNA-seq, May 8th, 2024
 
 ### Learning objectives
 
@@ -27,7 +27,7 @@
 * List the key statistical concepts utilized for the analysis
 
 ### Lessons
-* [Single cell RNA-seq](slides/Intro-to-scRNAseq.pdf) (50 mins)
+* [Single cell RNA-seq]() (50 mins)
 
 ## Resources (bulk RNA-seq)
 
